@@ -41,6 +41,8 @@ function testProcess() {
 }
 
 function testSplitResult() {
+  const dartResult = "1S2D*3T";
+
   const expected = ["1S", "2D*", "3T"];
   const actual = splitResult(dartResult);
 
@@ -78,9 +80,9 @@ function testScorefy() {
 }
 
 function splitResult(dr) {
-  const pattern = /(\d+[^\d]+)(\d+[^\d]+)(\d+[^\d]+)/;
+  const pattern = /(\d+[^\d]+)/g;
 
-  return [dr.match(pattern)[1], dr.match(pattern)[2], dr.match(pattern)[3]];
+  return dr.match(pattern);
 }
 
 function transBonus(bonus) {
