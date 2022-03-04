@@ -4,8 +4,10 @@
   "description": "Data Structure and Algorithm",
   "scripts": {
     "test": "jest --verbose",
+    "test:changed": "jest --verbose --onlyChanged",
     "test:watch": "jest --watch --verbose",
-    "test:watch:changed": "jest --watch --verbose --onlyChanged"
+    "test:watch:changed": "jest --watch --verbose --onlyChanged",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "@types/jest": "^27.4.1",
     "@types/jest-plugin-context": "^2.9.4",
     "babel-jest": "^27.5.1",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-plugin-context": "^2.9.0",
     "typescript": "^4.6.2"
