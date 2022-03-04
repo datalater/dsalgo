@@ -1,0 +1,30 @@
+{
+  "name": "dsalgo",
+  "version": "1.0.0",
+  "description": "Data Structure and Algorithm",
+  "scripts": {
+    "test": "jest --verbose",
+    "test:watch": "jest --watch --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datalater/dsalgo.git"
+  },
+  "author": "datalater https://github.com/datalater",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/datalater/dsalgo/issues"
+  },
+  "homepage": "https://github.com/datalater/dsalgo#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "@types/jest-plugin-context": "^2.9.4",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "jest-plugin-context": "^2.9.0",
+    "typescript": "^4.6.2"
+  }
+}
