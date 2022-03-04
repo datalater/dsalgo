@@ -4,7 +4,8 @@
   "description": "Data Structure and Algorithm",
   "scripts": {
     "test": "jest --verbose",
-    "test:watch": "jest --watch --verbose"
+    "test:watch": "jest --watch --verbose",
+    "test:watch:changed": "jest --watch --verbose --onlyChanged"
   },
   "repository": {
     "type": "git",
