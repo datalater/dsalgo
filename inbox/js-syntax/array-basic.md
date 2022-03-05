@@ -1,5 +1,14 @@
 # JavaScript Array Basic
 
+## range 배열 만들기
+
+```js
+const length = 100;
+const range = [...Array(length)].map((_, i) => i);
+```
+
+> https://jsbench.me/ 기준으로 내가 알아본 것 중에서 가장 빠른 방법이다.
+
 ## 중간에 있는 요소 추가 및 삭제
 
 ```js
@@ -13,7 +22,7 @@ console.log(nums); // [1, 2, 3, 4, 5, 6, 7]
 ## 배열 요소 중 하나라도 일치하는지 확인
 
 ```js
-Array.some((element) => element.id === this.workspace.id);
+//; Array.some((element) => element.id === this.workspace.id);
 
 const VISA_PREFIXES = ["4", "5", "6", "37"];
 
