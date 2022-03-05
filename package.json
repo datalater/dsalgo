@@ -4,9 +4,10 @@
   "description": "Data Structure and Algorithm",
   "scripts": {
     "test": "jest --verbose",
-    "test:changed": "jest --verbose --onlyChanged",
+    "test:changed": "jest --onlyChanged --verbose ",
     "test:watch": "jest --watch --verbose",
-    "test:watch:changed": "jest --watch --verbose --onlyChanged",
+    "test:changed:watch": "jest --onlyChanged --watch --verbose ",
+    "test:cw": "npm run test:changed:watch",
     "prepare": "husky install"
   },
   "repository": {
