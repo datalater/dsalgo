@@ -1,58 +1,28 @@
 function solution(n, computers) {
   let count = 0;
-
-  const isVisited = new Array(n).fill(false);
+  const isVisited = Array(n).fill(false);
 
   for (let i = 0; i < n; i += 1) {
+    // 현재 노드를 방문하지 않았다면
     if (!isVisited[i]) {
-      dfs(i);
-      count++;
+      dfs(i); // 현재 노드를 탐색한다
+      count++; // 현재 노드의 dfs 탐색이 끝났으므로 네트워크 개수를 증가시킨다
     }
   }
 
   return count;
 
-  function dfs(vertex) {
-    isVisited[vertex] = true;
+  function dfs(node) {
+    isVisited[node] = true;
 
     for (let i = 0; i < n; i += 1) {
-      if (computers[vertex][i] && !isVisited[i]) {
+      // 인접노드가 있고 방문하지 않았다면
+      if (computers[node][i] && !isVisited[i]) {
+        // 인접노드를 계속해서 탐색한다
         dfs(i);
       }
     }
   }
 }
 
-function testAll() {
-  const inputs = [
-    {
-      n: 3,
-      computers: [
-        [1, 1, 0],
-        [1, 1, 0],
-        [0, 0, 1],
-      ],
-    },
-    {
-      n: 3,
-      computers: [
-        [1, 1, 0],
-        [1, 1, 1],
-        [0, 1, 1],
-      ],
-    },
-  ];
-  const expecteds = [2, 1];
-
-  inputs.forEach((input, i) => {
-    assert(expecteds[i], solution(input.n, input.computers));
-  });
-}
-
-function assert(expected, actual) {
-  const result = JSON.stringify(expected) === JSON.stringify(actual);
-
-  console.log({ expected, actual, result });
-}
-
-testAll();
+export { solution };
