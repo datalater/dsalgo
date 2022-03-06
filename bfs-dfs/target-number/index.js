@@ -1,41 +1,23 @@
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+/**
+ * @link https://jjnooys.medium.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%ED%83%80%EA%B2%9F-%EB%84%98%EB%B2%84-javascript-1d7983d423b5
+ */
 
 function solution(numbers, target) {
   let answer = 0;
-  const stack = [];
 
-  const root = new Node(0);
-  makeTree(numbers, root, 0);
+  dfs(0, 0);
 
-  return answer;
-
-  function makeTree(array, node, index) {
-    stack.push(node.value);
-
-    if (!array[index]) {
-      const sum = stack.reduce((a, b) => a + b);
+  function dfs(index, sum) {
+    if (!numbers[index]) {
       sum === target && ++answer;
-
       return;
     }
 
-    const node1 = new Node(-array[index]);
-    const node2 = new Node(array[index]);
-
-    node.left = node1;
-    node.right = node2;
-
-    makeTree(array, node.left, index + 1);
-    stack.pop();
-    makeTree(array, node.right, index + 1);
-    stack.pop();
+    dfs(index + 1, sum + numbers[index]);
+    dfs(index + 1, sum - numbers[index]);
   }
+
+  return answer;
 }
 
 export { solution };

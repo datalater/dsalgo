@@ -1,9 +1,11 @@
 import { solution as sol1 } from "./origin";
-import { solution as sol2 } from "./index";
+import { solution as sol2 } from "./sojung";
+import { solution as sol3 } from "./index";
 
 const profiles = {
   origin: sol1,
-  index: sol2,
+  sojung: sol2,
+  index: sol3,
 };
 
 describe("타겟 넘버", () => {
