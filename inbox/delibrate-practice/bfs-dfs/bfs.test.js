@@ -1,4 +1,4 @@
-import { bfs1, bfs2 } from "./bfs";
+import { bfsWhile, bfsTailRecursion } from "./bfs";
 
 const graph = {
   A: ["B", "C"],
@@ -14,7 +14,22 @@ const graph = {
 };
 
 test("BFS", () => {
-  expect(bfs1(graph, "A")).toEqual([
+  expect(bfsWhile(graph, "A")).toEqual([
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "E",
+    "F",
+    "J",
+  ]);
+});
+
+test("BFS recursive", () => {
+  expect(bfsTailRecursion(graph, ["A"], [])).toEqual([
     "A",
     "B",
     "C",

@@ -1,4 +1,4 @@
-import { dfs1 } from "./dfs";
+import { dfsWhile, dfsTailRecursion } from "./dfs";
 
 const graph = {
   A: ["B", "C"],
@@ -14,7 +14,22 @@ const graph = {
 };
 
 test("DFS", () => {
-  expect(dfs1(graph, "A")).toEqual([
+  expect(dfsWhile(graph, "A")).toEqual([
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "C",
+    "G",
+    "H",
+    "I",
+    "J",
+  ]);
+});
+
+test("DFS", () => {
+  expect(dfsTailRecursion(graph, ["A"], [])).toEqual([
     "A",
     "B",
     "D",
