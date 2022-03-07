@@ -11,10 +11,22 @@ export function rotate(s, n) {
 }
 
 export function isValid(s) {
-  if (s.length % 2 !== 0 || isWrongStart(s)) {
+  const util = new Util();
+
+  if (s.length % 2 !== 0 || util.isWrongStart(s)) {
     return false;
   }
 
+  /**
+   * 문자열 s에서 한 글자씩 새로 담는 스택
+   *
+   * | before-s | satck | after-s |
+   * | ------ | ---------- | ----- |
+   * | "()()" | [ "(" ]    | ")()" |
+   * | ")()"  | [ "()" ]   | "()"  |
+   * | "()"   | [ "()(" ]  | ")"   |
+   * | ")"    | [ "()()" ] | ""    |
+   */
   const stack = [];
 
   const [first] = s;
@@ -26,7 +38,8 @@ export function isValid(s) {
     const [first] = s;
     s = s.slice(1);
 
-    if (findPair(last(stack)) === first) {
+    // 스택의 탑과 새로 담으려는 괄호가 페어일 경우
+    if (util.findPair(util.top(stack)) === first) {
       stack.pop();
     } else {
       stack.push(first);
@@ -36,20 +49,29 @@ export function isValid(s) {
   return stack.length === 0;
 }
 
-const pairs = {
-  "(": ")",
-  "[": "]",
-  "{": "}",
-};
+// 굳이 이렇게 할 필요는 없지만 새로운 시도를 해보았다.
+function Util() {
+  const pairs = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
 
-function last(array) {
-  return array[array.length - 1];
-}
+  function findPair(one) {
+    return pairs[one];
+  }
 
-function findPair(one) {
-  return pairs[one];
-}
+  function isWrongStart(string) {
+    return !Object.keys(pairs).includes(string[0]);
+  }
 
-function isWrongStart(string) {
-  return !Object.keys(pairs).includes(string[0]);
+  function top(array) {
+    return array[array.length - 1];
+  }
+
+  return {
+    findPair,
+    isWrongStart,
+    top,
+  };
 }
