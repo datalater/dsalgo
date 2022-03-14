@@ -1,14 +1,8 @@
 function solution(orders, course) {
-  return course.flatMap((n) => top(orders, n)).sort();
-}
-
-function top(orders, n) {
-  const combs = combinateStrings(orders, n);
-  const counts = count(combs);
-
-  const max = Math.max(...Object.values(counts));
-
-  return max > 1 ? [...new Set(combs.filter((it) => counts[it] === max))] : [];
+  return course
+    .map((n) => combinateStrings(orders, n))
+    .flatMap(mostFrequent)
+    .sort();
 }
 
 function count(arr) {
@@ -18,21 +12,14 @@ function count(arr) {
   }, {});
 }
 
-function combinateStrings(array, n) {
-  return array
-    .map((s) => combinateString(s, n))
-    .reduce((acc, cur) => [...acc, ...cur], [])
-    .sort();
-}
+function mostFrequent(array) {
+  const countMap = count(array);
 
-function combinateString(s, n) {
-  const _s = s.split("");
+  const max = Math.max(...Object.values(countMap));
 
-  const result = combinate(_s, n)
-    .map((it) => it.sort().join(""))
-    .sort();
-
-  return result;
+  return max > 1
+    ? Object.keys(countMap).filter((key) => countMap[key] === max)
+    : [];
 }
 
 function combinate(array, n) {
@@ -47,12 +34,36 @@ function combinate(array, n) {
 
     const combinations = combinate(rest, n - 1);
 
-    const attched = combinations.map((combination) => [fixed, ...combination]);
+    const concated = combinations.map((combination) => [fixed, ...combination]);
 
-    result.push(...attched);
+    result.push(...concated);
   });
 
   return result;
 }
 
-export { solution, top, count, combinate, combinateString, combinateStrings };
+function combinateString(s, n) {
+  const _s = s.split("");
+
+  const result = combinate(_s, n)
+    .map((it) => it.sort().join(""))
+    .sort();
+
+  return result;
+}
+
+function combinateStrings(array, n) {
+  return array
+    .map((s) => combinateString(s, n))
+    .reduce((acc, cur) => [...acc, ...cur], [])
+    .sort();
+}
+
+export {
+  count,
+  mostFrequent,
+  combinate,
+  combinateString,
+  combinateStrings,
+  solution,
+};
