@@ -1,4 +1,32 @@
-function dfsWhile(graph, startNode) {
+function dfsRecursive(graph, startNode, visited = []) {
+  visited.push(startNode);
+
+  for (const node of graph[startNode]) {
+    if (!visited.includes(node)) {
+      dfsRecursive(graph, node, visited);
+    }
+  }
+
+  return visited;
+}
+
+function dfsStack(graph, startNode) {
+  const stack = [startNode];
+  const visited = [];
+
+  while (stack.length) {
+    const currentNode = stack.pop();
+
+    if (!visited.includes(currentNode)) {
+      visited.push(currentNode);
+      stack.push(...graph[currentNode]);
+    }
+  }
+
+  return visited;
+}
+
+function dfsQueue(graph, startNode) {
   const queue = [startNode]; // 탐색할 노드 목록 큐
   const visited = []; // 방문한 노드를 차례대로 저장하는 배열
 
@@ -35,4 +63,4 @@ function dfsTailRecursion(graph, queue, visited) {
   return dfsTailRecursion(graph, queue, visited);
 }
 
-export { dfsWhile, dfsTailRecursion };
+export { dfsRecursive, dfsStack, dfsQueue, dfsTailRecursion };
