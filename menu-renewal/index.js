@@ -22,32 +22,25 @@ function mostFrequent(array) {
     : [];
 }
 
-function combinate(array, n) {
-  const result = [];
-
-  if (n === 1) {
-    return array.map((it) => [it]);
+function combinateString(s, n) {
+  if (s.length < n) {
+    return [];
   }
 
-  array.forEach((fixed, index, origin) => {
-    const rest = origin.slice(index + 1);
+  const result = [];
 
-    const combinations = combinate(rest, n - 1);
+  function dfs(index, path) {
+    if (path.length === n) {
+      result.push(Array.from(path).sort().join(""));
+      return;
+    }
 
-    const concated = combinations.map((combination) => [fixed, ...combination]);
+    for (let i = index; i < s.length; i++) {
+      dfs(i + 1, path + s[i]);
+    }
+  }
 
-    result.push(...concated);
-  });
-
-  return result;
-}
-
-function combinateString(s, n) {
-  const _s = s.split("");
-
-  const result = combinate(_s, n)
-    .map((it) => it.sort().join(""))
-    .sort();
+  dfs(0, "");
 
   return result;
 }
@@ -59,11 +52,4 @@ function combinateStrings(array, n) {
     .sort();
 }
 
-export {
-  count,
-  mostFrequent,
-  combinate,
-  combinateString,
-  combinateStrings,
-  solution,
-};
+export { count, mostFrequent, combinateString, combinateStrings, solution };

@@ -1,7 +1,6 @@
 import {
   count,
   mostFrequent,
-  combinate,
   combinateString,
   combinateStrings,
   solution,
@@ -38,14 +37,6 @@ test("배열에서 최빈값 요소를 구한다", () => {
   expect(mostFrequent(["A", "B", "C", "A"])).toEqual(["A"]);
   expect(mostFrequent(["A", "B", "C"])).toEqual([]);
   expect(mostFrequent(["A", "B", "C", "A", "C"])).toEqual(["A", "C"]);
-});
-
-test("배열에서 특정 길이만큼 조합할 수 있는 모든 경우의 수를 구한다", () => {
-  expect(combinate(["A", "B", "C"], 2)).toEqual([
-    ["A", "B"],
-    ["A", "C"],
-    ["B", "C"],
-  ]);
 });
 
 test("주어진 문자열에서 특정한 길이만큼 조합한다", () => {
